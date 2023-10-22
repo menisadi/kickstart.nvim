@@ -111,6 +111,7 @@ require('lazy').setup({
 
   -- Useful plugin to show you pending keybinds.
   { 'folke/which-key.nvim', opts = {} },
+  -- ++++++++++++ Me: I read up to here ++++++++++++
   {
     -- Adds git related signs to the gutter, as well as utilities for managing changes
     'lewis6991/gitsigns.nvim',
@@ -152,9 +153,10 @@ require('lazy').setup({
 
   {
     "ellisonleao/gruvbox.nvim",
-    priority = 1000 ,
+    priority = 1000,
     config = function()
       vim.cmd.colorscheme 'gruvbox'
+      vim.o.background = "dark"
     end,
   },
 
@@ -473,10 +475,10 @@ require('mason-lspconfig').setup()
 local servers = {
   -- clangd = {},
   -- gopls = {},
-  -- pyright = {},
+  pyright = {},
   -- rust_analyzer = {},
   -- tsserver = {},
-  -- html = { filetypes = { 'html', 'twig', 'hbs'} },
+  html = { filetypes = { 'html', 'twig', 'hbs'} },
 
   lua_ls = {
     Lua = {
