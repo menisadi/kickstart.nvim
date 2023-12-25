@@ -20,6 +20,7 @@ return {
 
     -- Add your own debuggers here
     'leoluz/nvim-dap-go',
+    'mfussenegger/nvim-dap-python',
   },
   config = function()
     local dap = require 'dap'
@@ -39,7 +40,23 @@ return {
       ensure_installed = {
         -- Update this to ensure that you have the debuggers for the langs you want
         'delve',
+        'python',
       },
+    }
+
+    dap.configurations.python = {
+      {
+        type = "python",
+        request = "launch",
+        name = "Launch file",
+        program = "${file}",
+        pythonPath = '/Users/meni/.pyenv/shims/python',
+      }
+    }
+    dap.adapters.python = {
+      type = "executable",
+      command = “python”,
+      args = { "-m", "debugpy.adapter" },
     }
 
     -- Basic debugging keymaps, feel free to change to your liking!
@@ -83,5 +100,7 @@ return {
 
     -- Install golang specific config
     require('dap-go').setup()
+    -- Install python config
+    require('dap-python').setup()
   end,
 }

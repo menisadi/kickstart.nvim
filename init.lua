@@ -34,6 +34,8 @@ require('lazy').setup({
 
   -- Detect tabstop and shiftwidth automatically
   'tpope/vim-sleuth',
+  "folke/trouble.nvim",
+  dependencies = { "nvim-tree/nvim-web-devicons" },
 
   -- NOTE: This is where your plugins related to LSP can be installed.
   --  The configuration is done below. Search for lspconfig to find it below.
@@ -201,7 +203,6 @@ vim.o.hlsearch = false
 -- Make line numbers default
 vim.wo.number = true
 
--- ++++++++++++ Me: I read up to here ++++++++++++
 -- Enable mouse mode
 vim.o.mouse = 'a'
 
@@ -243,6 +244,7 @@ vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
+-- ++++++++++++ Me: I read up to here ++++++++++++
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
