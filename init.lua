@@ -244,6 +244,9 @@ vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
+-- Help nvim find python so it won't take it extra second to find it by it self
+vim.g.python3_host_prog = '/Users/meni/.pyenv/versions/nvim/bin/python3'
+
 -- ++++++++++++ Me: I read up to here ++++++++++++
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
