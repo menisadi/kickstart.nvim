@@ -190,7 +190,7 @@ require('lazy').setup({
   --    Uncomment the following line and add your plugins to `lua/custom/plugins/*.lua` to get going.
   --
   --    For additional information see: https://github.com/folke/lazy.nvim#-structuring-your-plugins
-  -- { import = 'custom.plugins' },
+  { import = 'custom.plugins' },
 }, {})
 
 -- [[ Setting options ]]
@@ -234,6 +234,14 @@ vim.o.completeopt = 'menuone,noselect'
 -- NOTE: You should make sure your terminal supports this
 vim.o.termguicolors = true
 
+-- Enable folding
+vim.opt.foldenable = true
+vim.opt.foldmethod = 'indent'
+vim.opt.foldminlines = 1
+vim.opt.foldlevel = 99
+
+vim.opt.splitbelow = true
+
 -- [[ Basic Keymaps ]]
 
 -- Keymaps for better default experience
@@ -243,6 +251,10 @@ vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 -- Remap for dealing with word wrap
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
+
+-- Keymap for running python files
+vim.keymap.set('n', '<F9>', [[:w<CR>:exec '!python3' shellescape(@%, 1)<CR>]], { noremap = true, buffer = true })
+vim.keymap.set('n', '<F8>', [[:w<CR>:10split | terminal python %<CR>]], { noremap = true, buffer = true })
 
 -- Help nvim find python so it won't take it extra second to find it by it self
 vim.g.python3_host_prog = '/Users/meni/.pyenv/versions/nvim/bin/python3'
