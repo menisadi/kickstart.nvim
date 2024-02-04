@@ -253,8 +253,16 @@ vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = tr
 vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
 -- Keymap for running python files
-vim.keymap.set('n', '<F9>', [[:w<CR>:exec '!python3' shellescape(@%, 1)<CR>]], { noremap = true, buffer = true })
-vim.keymap.set('n', '<F8>', [[:w<CR>:10split | terminal python %<CR>]], { noremap = true, buffer = true })
+vim.keymap.set('n', '<F9>', [[:w<CR>:exec '!python3' shellescape(@%, 1)<CR>]],
+  { noremap = true, buffer = true, desc = "Run Python code in outside shell" })
+vim.keymap.set("n", "<F6>", [[:w<CR>:10split | terminal python %<CR>]],
+  { noremap = true, buffer = true, desc = "Run Python code within Neovim" })
+-- vim.keymap.set(
+--   "n",
+--   "<F6>",
+--   [[:w<CR>:10split | execute('terminal python %') | startinsert <CR>]],
+--   { noremap = true, buffer = true, desc = "Run Python code" }
+-- )
 
 -- Help nvim find python so it won't take it extra second to find it by it self
 vim.g.python3_host_prog = '/Users/meni/.pyenv/versions/nvim/bin/python3'
