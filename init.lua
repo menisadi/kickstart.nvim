@@ -34,8 +34,8 @@ require('lazy').setup({
 
   -- Detect tabstop and shiftwidth automatically
   'tpope/vim-sleuth',
-  "folke/trouble.nvim",
-  dependencies = { "nvim-tree/nvim-web-devicons" },
+  'folke/trouble.nvim',
+  dependencies = { 'nvim-tree/nvim-web-devicons' },
 
   -- NOTE: This is where your plugins related to LSP can be installed.
   --  The configuration is done below. Search for lspconfig to find it below.
@@ -73,7 +73,7 @@ require('lazy').setup({
   },
 
   -- Useful plugin to show you pending keybinds.
-  { 'folke/which-key.nvim',  opts = {} },
+  { 'folke/which-key.nvim', opts = {} },
   {
     -- Adds git related signs to the gutter, as well as utilities for managing changes
     'lewis6991/gitsigns.nvim',
@@ -114,11 +114,11 @@ require('lazy').setup({
   },
 
   {
-    "ellisonleao/gruvbox.nvim",
+    'ellisonleao/gruvbox.nvim',
     priority = 1000,
     config = function()
       vim.cmd.colorscheme 'gruvbox'
-      vim.o.background = "dark"
+      vim.o.background = 'dark'
     end,
   },
 
@@ -253,17 +253,12 @@ vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = tr
 vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
 -- Keymap for running python files
-vim.keymap.set('n', '<F9>', [[:w<CR>:exec '!python3' shellescape(@%, 1)<CR>]],
-  { noremap = true, buffer = true, desc = "Run Python code in outside shell" })
-vim.keymap.set("n", "<F6>", [[:w<CR>:10split | terminal python %<CR>]],
-  { noremap = true, buffer = true, desc = "Run Python code within Neovim" })
--- vim.keymap.set(
---   "n",
---   "<F6>",
---   [[:w<CR>:10split | execute('terminal python %') | startinsert <CR>]],
---   { noremap = true, buffer = true, desc = "Run Python code" }
--- )
+vim.keymap.set('n', '<F9>', [[:w<CR>:exec '!python3' shellescape(@%, 1)<CR>]], { noremap = true, buffer = true, desc = 'Run Python code in outside shell' })
+vim.keymap.set('n', '<F6>', [[:w<CR>:10split | terminal python %<CR>]], { noremap = true, buffer = true, desc = 'Run Python code within Neovim' })
 
+vim.keymap.set('n', '<leader>z', [[:bd<CR>]], { noremap = true, buffer = true, desc = 'Close current buffer' })
+
+-- [[ Python ]]
 -- Help nvim find python so it won't take it extra second to find it by it self
 vim.g.python3_host_prog = '/Users/meni/.pyenv/versions/nvim/bin/python3'
 
@@ -320,8 +315,7 @@ vim.keymap.set('n', '<leader>sr', require('telescope.builtin').resume, { desc = 
 vim.defer_fn(function()
   require('nvim-treesitter.configs').setup {
     -- Add languages to be installed here that you want installed for treesitter
-    ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'tsx', 'javascript', 'typescript', 'vimdoc', 'vim',
-      'bash' },
+    ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'tsx', 'javascript', 'typescript', 'vimdoc', 'vim', 'bash' },
 
     -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
     auto_install = false,
