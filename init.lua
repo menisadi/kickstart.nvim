@@ -73,7 +73,7 @@ require('lazy').setup({
   },
 
   -- Useful plugin to show you pending keybinds.
-  { 'folke/which-key.nvim', opts = {} },
+  { 'folke/which-key.nvim',  opts = {} },
   {
     -- Adds git related signs to the gutter, as well as utilities for managing changes
     'lewis6991/gitsigns.nvim',
@@ -206,6 +206,11 @@ vim.wo.number = true
 -- Enable mouse mode
 vim.o.mouse = 'a'
 
+-- Enable relative line numbering
+vim.wo.relativenumber = true
+vim.opt.statuscolumn = '%=%{v:relnum?v:relnum:v:lnum} '
+vim.opt.cursorline = true
+
 -- Sync clipboard between OS and Neovim.
 --  Remove this option if you want your OS clipboard to remain independent.
 --  See `:help 'clipboard'`
@@ -253,8 +258,10 @@ vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = tr
 vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
 -- Keymap for running python files
-vim.keymap.set('n', '<F9>', [[:w<CR>:exec '!python3' shellescape(@%, 1)<CR>]], { noremap = true, buffer = true, desc = 'Run Python code in outside shell' })
-vim.keymap.set('n', '<F6>', [[:w<CR>:10split | terminal python %<CR>]], { noremap = true, buffer = true, desc = 'Run Python code within Neovim' })
+vim.keymap.set('n', '<F9>', [[:w<CR>:exec '!python3' shellescape(@%, 1)<CR>]],
+  { noremap = true, buffer = true, desc = 'Run Python code in outside shell' })
+vim.keymap.set('n', '<F6>', [[:w<CR>:10split | terminal python %<CR>]],
+  { noremap = true, buffer = true, desc = 'Run Python code within Neovim' })
 
 vim.keymap.set('n', '<leader>z', [[:bd<CR>]], { noremap = true, buffer = true, desc = 'Close current buffer' })
 
