@@ -3,7 +3,6 @@
 --  NOTE: Must happen before plugins are required (otherwise wrong leader will be used)
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
-
 -- Install package manager
 --    https://github.com/folke/lazy.nvim
 --    `:help lazy.nvim.txt` for more info
@@ -211,6 +210,10 @@ vim.wo.relativenumber = true
 vim.opt.statuscolumn = '%=%{v:relnum?v:relnum:v:lnum} '
 vim.opt.cursorline = true
 
+-- Spell check
+vim.opt.spelllang = 'en_us'
+vim.opt.spell = true
+
 -- Sync clipboard between OS and Neovim.
 --  Remove this option if you want your OS clipboard to remain independent.
 --  See `:help 'clipboard'`
@@ -265,9 +268,32 @@ vim.keymap.set('n', '<F6>', [[:w<CR>:10split | terminal python %<CR>]],
 
 vim.keymap.set('n', '<leader>z', [[:bd<CR>]], { noremap = true, buffer = true, desc = 'Close current buffer' })
 
+-- Dismiss noice messages
+vim.keymap.set("n", "<leader>nd", "<cmd>NoiceDismiss<CR>", { desc = "Dismiss Noice Message" })
+
 -- [[ Python ]]
 -- Help nvim find python so it won't take it extra second to find it by it self
 vim.g.python3_host_prog = '/Users/meni/.pyenv/versions/nvim/bin/python3'
+
+-- [[ Noice ]]
+require("noice").setup({
+  lsp = {
+    -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
+    override = {
+      ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+      ["vim.lsp.util.stylize_markdown"] = true,
+      ["cmp.entry.get_documentation"] = true, -- requires hrsh7th/nvim-cmp
+    },
+  },
+  -- you can enable a preset for easier configuration
+  presets = {
+    bottom_search = true,         -- use a classic bottom cmdline for search
+    command_palette = true,       -- position the cmdline and popupmenu together
+    long_message_to_split = true, -- long messages will be sent to a split
+    inc_rename = false,           -- enables an input dialog for inc-rename.nvim
+    lsp_doc_border = false,       -- add a border to hover docs and signature help
+  },
+})
 
 -- ++++++++++++ Me: I read up to here ++++++++++++
 -- [[ Highlight on yank ]]
@@ -470,8 +496,13 @@ local servers = {
 
   lua_ls = {
     Lua = {
-      workspace = { checkThirdParty = false },
-      telemetry = { enable = false },
+      workspace = {
+        checkThirdParty = false,
+        telemetry = { enable = false },
+        library = {
+          "${3rd}/love2d/library"
+        },
+      },
     },
   },
 }
@@ -548,6 +579,18 @@ cmp.setup {
     { name = 'luasnip' },
   },
 }
+
+-- [[ LuaSnip ]]
+vim.keymap.set({ "i" }, "<C-K>", function() luasnip.expand() end, { silent = true })
+vim.keymap.set({ "i", "s" }, "<C-L>", function() luasnip.jump(1) end, { silent = true })
+vim.keymap.set({ "i", "s" }, "<C-J>", function() luasnip.jump(-1) end, { silent = true })
+
+vim.keymap.set({ "i", "s" }, "<C-E>", function()
+  if luasnip.choice_active() then
+    luasnip.change_choice(1)
+  end
+end, { silent = true })
+
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
