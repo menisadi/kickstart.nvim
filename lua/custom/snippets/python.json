@@ -1,0 +1,25 @@
+{
+  "imports": {
+    "prefix": ["imports"],
+    "body": [
+      "import numpy as np",
+      "import pandas as pd",
+      "import matplotlib.pyplot as plt",
+      "import seaborn as sns"
+    ],
+    "description": "Import all the basic data libraries"
+  },
+  "docstring": {
+    "prefix": ["docs"],
+    "body": [
+      "\"\"\"${1:Short function description}",
+      "Parameters:",
+      "\t${2:parameters} : ${3:description of the arguments}",
+      "",
+      "Returns:",
+      "\t${5:output type} : ${6:short output description}",
+      "\"\"\"$0"
+    ],
+    "description": "Python docstring template"
+  }
+}

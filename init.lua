@@ -268,32 +268,18 @@ vim.keymap.set('n', '<F6>', [[:w<CR>:10split | terminal python %<CR>]],
 
 vim.keymap.set('n', '<leader>z', [[:bd<CR>]], { noremap = true, buffer = true, desc = 'Close current buffer' })
 
--- Dismiss noice messages
-vim.keymap.set("n", "<leader>nd", "<cmd>NoiceDismiss<CR>", { desc = "Dismiss Noice Message" })
+-- [[ NeoGen - Annotation Generator ]]
+require('neogen').setup({ snippet_engine = "luasnip" })
+vim.keymap.set(
+  "n",
+  "<Leader>ng",
+  ":lua require('neogen').generate()<CR>",
+  { noremap = true, silent = true, desc = "Generate annotation using Neogen" }
+)
 
 -- [[ Python ]]
 -- Help nvim find python so it won't take it extra second to find it by it self
 vim.g.python3_host_prog = '/Users/meni/.pyenv/versions/nvim/bin/python3'
-
--- [[ Noice ]]
-require("noice").setup({
-  lsp = {
-    -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
-    override = {
-      ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
-      ["vim.lsp.util.stylize_markdown"] = true,
-      ["cmp.entry.get_documentation"] = true, -- requires hrsh7th/nvim-cmp
-    },
-  },
-  -- you can enable a preset for easier configuration
-  presets = {
-    bottom_search = true,         -- use a classic bottom cmdline for search
-    command_palette = true,       -- position the cmdline and popupmenu together
-    long_message_to_split = true, -- long messages will be sent to a split
-    inc_rename = false,           -- enables an input dialog for inc-rename.nvim
-    lsp_doc_border = false,       -- add a border to hover docs and signature help
-  },
-})
 
 -- ++++++++++++ Me: I read up to here ++++++++++++
 -- [[ Highlight on yank ]]
