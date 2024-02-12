@@ -68,6 +68,9 @@ require('lazy').setup({
 
       -- Adds a number of user-friendly snippets
       'rafamadriz/friendly-snippets',
+
+      -- Auto completion for paths
+      'hrsh7th/cmp-path',
     },
   },
 
@@ -259,6 +262,11 @@ vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 -- Remap for dealing with word wrap
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
+
+-- Map ]b to go to the next buffer
+vim.keymap.set('n', ']b', ':bnext<CR>', { noremap = true, silent = true })
+-- Map [b to go to the previous buffer
+vim.keymap.set('n', '[b', ':bprev<CR>', { noremap = true, silent = true })
 
 -- Keymap for running python files
 vim.keymap.set('n', '<F9>', [[:w<CR>:exec '!python3' shellescape(@%, 1)<CR>]],
@@ -563,6 +571,7 @@ cmp.setup {
   sources = {
     { name = 'nvim_lsp' },
     { name = 'luasnip' },
+    { name = 'path' },
   },
 }
 
