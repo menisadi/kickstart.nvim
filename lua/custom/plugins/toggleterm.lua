@@ -3,7 +3,8 @@ return {
   version = "*",
   opts = {
     size = 10,
-    open_mapping = [[<leader>t]],
+    open_mapping = "<leader>t",
+    insert_mappings = false,
     shading_factor = 2,
     direction = "float",
     float_opts = {

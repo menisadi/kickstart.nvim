@@ -135,6 +135,18 @@ require('lazy').setup({
         component_separators = '|',
         section_separators = '',
       },
+      winbar = {
+        lualine_c = {
+          {
+            "navic",
+            color_correction = nil,
+            navic_opts = {
+              separator = " | ",
+              depth_limit = 5,
+            }
+          }
+        }
+      }
     },
   },
 
