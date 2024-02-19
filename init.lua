@@ -269,12 +269,13 @@ vim.keymap.set('n', ']b', ':bnext<CR>', { noremap = true, silent = true })
 vim.keymap.set('n', '[b', ':bprev<CR>', { noremap = true, silent = true })
 
 -- Keymap for running python files
-vim.keymap.set('n', '<F9>', [[:w<CR>:exec '!python3' shellescape(@%, 1)<CR>]],
-  { noremap = true, buffer = true, desc = 'Run Python code in outside shell' })
-vim.keymap.set('n', '<F6>', [[:w<CR>:10split | terminal python %<CR>]],
+vim.keymap.set('n', '<leader>p', [[:w<CR>:10split | terminal python %<CR>]],
   { noremap = true, buffer = true, desc = 'Run Python code within Neovim' })
 
-vim.keymap.set('n', '<leader>z', [[:bd<CR>]], { noremap = true, buffer = true, desc = 'Close current buffer' })
+-- vim.keymap.set('n', '<F9>', [[:w<CR>:exec '!python3' shellescape(@%, 1)<CR>]],
+--   { noremap = true, buffer = true, desc = 'Run Python code in outside shell' })
+
+vim.keymap.set('n', '<leader>x', [[:bd<CR>]], { noremap = true, buffer = true, desc = 'Close current buffer' })
 
 -- [[ NeoGen - Annotation Generator ]]
 require('neogen').setup({ snippet_engine = "luasnip" })
