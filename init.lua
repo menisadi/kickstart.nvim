@@ -291,12 +291,18 @@ vim.keymap.set('n', '<leader>x', [[:bd<CR>]], { noremap = true, buffer = true, d
 
 -- [[ NeoGen - Annotation Generator ]]
 require('neogen').setup({ snippet_engine = "luasnip" })
+
 vim.keymap.set(
   "n",
   "<Leader>ng",
   ":lua require('neogen').generate()<CR>",
   { noremap = true, silent = true, desc = "Generate annotation using Neogen" }
 )
+
+-- [[ Neodev ]]
+
+-- [[ Oil ]]
+require("oil").setup()
 
 -- [[ Python ]]
 -- Help nvim find python so it won't take it extra second to find it by it self
