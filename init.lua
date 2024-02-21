@@ -136,6 +136,7 @@ require('lazy').setup({
         section_separators = '',
       },
       winbar = {
+        lualine_z = { { "buffers", hide_filename_extension = true, } },
         lualine_c = {
           {
             "navic",
