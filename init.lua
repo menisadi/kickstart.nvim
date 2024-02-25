@@ -89,7 +89,7 @@ require('lazy').setup({
         changedelete = { text = '~' },
       },
       on_attach = function(bufnr)
-        vim.keymap.set('n', '<leader>hp', require('gitsigns').preview_hunk, { buffer = bufnr, desc = 'Preview git hunk' })
+        vim.keymap.set('n', '<leader>gh', require('gitsigns').preview_hunk, { buffer = bufnr, desc = 'Preview git hunk' })
 
         -- don't override the built-in and fugitive keymaps
         local gs = package.loaded.gitsigns
@@ -134,6 +134,10 @@ require('lazy').setup({
         theme = 'gruvbox',
         component_separators = '|',
         section_separators = '',
+        globalstatus = true,
+      },
+      inactive_winbar = {
+        lualine_z = { { "buffers", hide_filename_extension = true } }
       },
       winbar = {
         lualine_z = { { "buffers", hide_filename_extension = true, } },
@@ -282,8 +286,37 @@ vim.keymap.set('n', ']b', ':bnext<CR>', { noremap = true, silent = true })
 vim.keymap.set('n', '[b', ':bprev<CR>', { noremap = true, silent = true })
 
 -- Keymap for running python files
-vim.keymap.set('n', '<leader>p', [[:w<CR>:10split | terminal python %<CR>]],
-  { noremap = true, buffer = true, desc = 'Run Python code within Neovim' })
+-- vim.keymap.set('n', '<leader>cp', [[:w<CR>:10split | terminal python %<CR>]],
+--   { noremap = true, buffer = true, desc = 'Run Python code within Neovim' })
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "python",
+  desc = "Set up python specific settings",
+  group = vim.api.nvim_create_augroup("python_settings", {}),
+  callback = function(args)
+    vim.keymap.set(
+      "n",
+      "<leader>cp",
+      "<cmd>w<CR><cmd>10split <bar> terminal python %<CR>",
+      { desc = "Execute Python code in a new pane", remap = false, buffer = args.buf }
+    )
+  end,
+})
+
+-- [[ Love2d ]]
+-- TODO: a bit messy
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "lua",
+  desc = "Set up lua specific settings",
+  group = vim.api.nvim_create_augroup("lua_settings", {}),
+  callback = function(args)
+    vim.keymap.set(
+      "n",
+      "<leader>cl",
+      function() vim.cmd(":term /Applications/love.app/Contents/MacOS/love " .. vim.fn.expand "%:p:h") end,
+      { desc = "Execute Love game in a new pane", remap = false, buffer = args.buf }
+    )
+  end,
+})
 
 -- vim.keymap.set('n', '<F9>', [[:w<CR>:exec '!python3' shellescape(@%, 1)<CR>]],
 --   { noremap = true, buffer = true, desc = 'Run Python code in outside shell' })
@@ -295,12 +328,14 @@ require('neogen').setup({ snippet_engine = "luasnip" })
 
 vim.keymap.set(
   "n",
-  "<Leader>ng",
+  "<Leader>cn",
   ":lua require('neogen').generate()<CR>",
   { noremap = true, silent = true, desc = "Generate annotation using Neogen" }
 )
 
--- [[ Neodev ]]
+-- [[ Aerial ]]
+require("aerial").setup()
+vim.keymap.set("n", "<leader>co", "<cmd>AerialToggle<CR>")
 
 -- [[ Oil ]]
 require("oil").setup()
@@ -339,6 +374,7 @@ require('telescope').setup {
 
 -- Enable telescope fzf native, if installed
 pcall(require('telescope').load_extension, 'fzf')
+require("telescope").load_extension("aerial")
 
 -- See `:help telescope.builtin`
 vim.keymap.set('n', '<leader>?', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })
@@ -484,7 +520,6 @@ require('which-key').register {
   ['<leader>c'] = { name = '[C]ode', _ = 'which_key_ignore' },
   ['<leader>d'] = { name = '[D]ocument', _ = 'which_key_ignore' },
   ['<leader>g'] = { name = '[G]it', _ = 'which_key_ignore' },
-  ['<leader>h'] = { name = 'More git', _ = 'which_key_ignore' },
   ['<leader>r'] = { name = '[R]ename', _ = 'which_key_ignore' },
   ['<leader>s'] = { name = '[S]earch', _ = 'which_key_ignore' },
   ['<leader>w'] = { name = '[W]orkspace', _ = 'which_key_ignore' },
