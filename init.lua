@@ -312,7 +312,10 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.keymap.set(
       "n",
       "<leader>cl",
-      function() vim.cmd(":term /Applications/love.app/Contents/MacOS/love " .. vim.fn.expand "%:p:h") end,
+      function()
+        vim.cmd(":w")
+        vim.cmd(":term /Applications/love.app/Contents/MacOS/love " .. vim.fn.expand "%:p:h")
+      end,
       { desc = "Execute Love game in a new pane", remap = false, buffer = args.buf }
     )
   end,
