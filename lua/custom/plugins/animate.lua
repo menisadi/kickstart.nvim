@@ -1,4 +1,5 @@
 return {
 	'echasnovski/mini.animate',
-	version = '*'
+	version = '*',
+	opts = {},
 }

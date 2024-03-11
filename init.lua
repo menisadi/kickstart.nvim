@@ -336,15 +336,18 @@ vim.keymap.set(
   { noremap = true, silent = true, desc = "Generate annotation using Neogen" }
 )
 
+-- TODO: delete this
 -- [[ Aerial ]]
-require("aerial").setup()
-vim.keymap.set("n", "<leader>co", "<cmd>AerialToggle<CR>")
+-- require("aerial").setup()
+-- vim.keymap.set("n", "<leader>co", "<cmd>AerialToggle<CR>")
 
+-- TODO: delete this
 -- [[ Oil ]]
-require("oil").setup()
+-- require("oil").setup()
 
+-- TODO: delete this
 -- [[ Mini.Animate ]]
-require('mini.animate').setup()
+-- require('mini.animate').setup()
 
 -- [[ Python ]]
 -- Help nvim find python so it won't take it extra second to find it by it self
