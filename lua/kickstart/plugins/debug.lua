@@ -14,6 +14,9 @@ return {
     -- Creates a beautiful debugger UI
     'rcarriga/nvim-dap-ui',
 
+    -- Required dependency for nvim-dap-ui
+    'nvim-neotest/nvim-nio',
+
     -- Installs the debug adapters for you
     'williamboman/mason.nvim',
     'jay-babu/mason-nvim-dap.nvim',
@@ -46,17 +49,17 @@ return {
 
     dap.configurations.python = {
       {
-        type = "python",
-        request = "launch",
-        name = "Launch file",
-        program = "${file}",
+        type = 'python',
+        request = 'launch',
+        name = 'Launch file',
+        program = '${file}',
         pythonPath = '/Users/meni/.pyenv/shims/python',
-      }
+      },
     }
     dap.adapters.python = {
-      type = "executable",
-      command = “python”,
-      args = { "-m", "debugpy.adapter" },
+      type = 'executable',
+      command = 'python',
+      args = { '-m', 'debugpy.adapter' },
     }
 
     -- Basic debugging keymaps, feel free to change to your liking!

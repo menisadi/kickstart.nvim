@@ -19,6 +19,12 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+if vim.g.neovide then
+  vim.g.neovide_window_blurred = true
+  vim.g.neovide_scale_factor = 1.5
+end
+
+
 -- NOTE: Here is where you install your plugins.
 --  You can configure plugins using the `config` key.
 --
