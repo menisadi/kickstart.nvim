@@ -291,6 +291,19 @@ vim.keymap.set('n', ']b', ':bnext<CR>', { noremap = true, silent = true })
 -- Map [b to go to the previous buffer
 vim.keymap.set('n', '[b', ':bprev<CR>', { noremap = true, silent = true })
 
+-- Telling loading time stats
+vim.api.nvim_create_autocmd("User", {
+  pattern = "LazyVimStarted",
+  desc = "",
+  once = true,
+  callback = function()
+    local stats = require("lazy").stats()
+    local ms = math.floor(stats.startuptime * 100 + 0.5) / 100
+    local stat_message = "loaded " .. stats.loaded .. "/" .. stats.count .. " plugins in " .. ms .. "ms"
+    vim.api.nvim_echo({ { stat_message, "Title" } }, true, {})
+  end,
+})
+
 -- Keymap for running python files
 -- vim.keymap.set('n', '<leader>cp', [[:w<CR>:10split | terminal python %<CR>]],
 --   { noremap = true, buffer = true, desc = 'Run Python code within Neovim' })
