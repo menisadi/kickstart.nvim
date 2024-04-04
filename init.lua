@@ -235,6 +235,7 @@ vim.o.mouse = 'a'
 vim.wo.relativenumber = true
 vim.opt.statuscolumn = '%=%{v:relnum?v:relnum:v:lnum} '
 vim.opt.cursorline = true
+vim.opt.cursorcolumn = true
 
 -- Spell check
 vim.opt.spelllang = 'en_us'
