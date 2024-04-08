@@ -361,9 +361,10 @@ vim.keymap.set(
 -- require("aerial").setup()
 -- vim.keymap.set("n", "<leader>co", "<cmd>AerialToggle<CR>")
 
--- TODO: delete this
 -- [[ Oil ]]
--- require("oil").setup()
+vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory with Oil" })
+vim.keymap.set("n", "<leader>wo", "<CMD>Oil ~<CR>", { desc = "Open root directory with Oil" })
+
 
 -- TODO: delete this
 -- [[ Mini.Animate ]]
