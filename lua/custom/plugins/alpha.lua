@@ -6,10 +6,13 @@ return {
 		dashboard.section.header.val = { " Hi there " }
 		dashboard.section.buttons.val = {
 			dashboard.button("e", "  New file", ":ene <BAR> startinsert <CR>"),
-			dashboard.button("SPACE w o", " Open code folder", ":ene /usr/code <CR>"),
-			dashboard.button("SPACE s z", " Open zoxide", "Telescode zoxide list <CR>"),
-			dashboard.button("SPACE s f", " Fuzzy find file", ":Telescode find_files <CR>"),
-			dashboard.button("SPACE ?", " Recently opened files", "Telescode oldfiles <CR>"),
+			dashboard.button("SPC w o", " Root folder", "<CMD>Oil ~ <CR>"),
+			dashboard.button("SPC s f", "󰐱 Fuzzy find file",
+				require('telescope.builtin').find_files),
+			dashboard.button("SPC s z", " Zoxide list",
+				require('telescope').extensions.zoxide.list),
+			dashboard.button("SPC ?", "󰋚 Recently opened files",
+				require('telescope.builtin').oldfiles),
 			dashboard.button("q", "󰅚  Quit NVIM", ":qa<CR>"),
 		}
 		dashboard.config.opts.noautocmd = true
