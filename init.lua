@@ -346,6 +346,12 @@ vim.api.nvim_create_autocmd("FileType", {
 
 vim.keymap.set('n', '<leader>x', [[:bd<CR>]], { noremap = true, buffer = true, desc = 'Close current buffer' })
 
+-- [[ Blinker ]]
+require("blinker").setup({})
+
+vim.keymap.set("n", "<leader>db", "<cmd>lua require('blinker').blink_cursorline()<CR>",
+  { buffer = true, desc = "Blink the cursor line" })
+
 -- [[ NeoGen - Annotation Generator ]]
 require('neogen').setup({ snippet_engine = "luasnip" })
 
