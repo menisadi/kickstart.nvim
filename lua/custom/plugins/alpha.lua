@@ -4,11 +4,10 @@ return {
 		local alpha = require 'alpha'
 		local dashboard = require 'alpha.themes.dashboard'
 		dashboard.section.header.val = {
-			"  ／l、             ",
-			"（ﾟ､ ｡ ７         ",
-			"  l  ~ヽ       ",
-			"  じしf_,)ノ",
-			"Well hello again"
+			'   (\\(\\',
+			'   ( -.-)',
+			'   o_(")(")',
+			'Well hello again'
 		}
 		dashboard.section.buttons.val = {
 			dashboard.button("e", "  New file", ":ene <BAR> startinsert <CR>"),
