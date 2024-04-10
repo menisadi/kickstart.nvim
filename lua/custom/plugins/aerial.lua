@@ -1,13 +1,15 @@
 return {
 	'stevearc/aerial.nvim',
-	opts = {},
+	opts = {
+		filter_kind = {
+			"Class",
+			"Function",
+			"Method",
+		},
+	},
 	-- Optional dependencies
 	dependencies = {
 		"nvim-treesitter/nvim-treesitter",
 		"nvim-tree/nvim-web-devicons"
 	},
-	config = function()
-		local aerial = require "aerial"
-		vim.keymap.set("n", "<leader>co", aerial.toggle, { desc = "Toggle Aerial pane" })
-	end
 }
