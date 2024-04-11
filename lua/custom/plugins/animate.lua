@@ -2,9 +2,7 @@ return {
 	'echasnovski/mini.animate',
 	version = '*',
 	cond = function()
-		if vim.g.neovide then
-			return false
-		end
+		return not vim.g.neovide
 	end,
 	opts = {},
 }
