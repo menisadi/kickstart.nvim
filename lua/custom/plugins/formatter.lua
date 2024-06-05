@@ -13,6 +13,14 @@ return {
 						"python"
 					},
 				}),
+				nls.builtins.formatting.sqlfluff.with({
+					filetypes = { "sql" },
+					extra_args = { "--dialect", "athena" },
+				}),
+				nls.builtins.diagnostics.sqlfluff.with({
+					filetypes = { "sql" },
+					extra_args = { "--dialect", "athena" },
+				}),
 			},
 		}
 	end,
