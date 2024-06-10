@@ -315,7 +315,7 @@ vim.api.nvim_create_autocmd("FileType", {
   callback = function(args)
     vim.keymap.set(
       "n",
-      "<leader>cp",
+      "<leader>lp",
       "<cmd>w<CR><cmd>10split <bar> terminal python %<CR>",
       { desc = "Execute Python code in a new pane", remap = false, buffer = args.buf }
     )
@@ -331,7 +331,7 @@ vim.api.nvim_create_autocmd("FileType", {
   callback = function(args)
     vim.keymap.set(
       "n",
-      "<leader>cl",
+      "<leader>ll",
       function()
         vim.cmd(":w")
         vim.cmd(":term /Applications/love.app/Contents/MacOS/love " .. vim.fn.expand "%:p:h")
@@ -344,7 +344,7 @@ vim.api.nvim_create_autocmd("FileType", {
 -- vim.keymap.set('n', '<F9>', [[:w<CR>:exec '!python3' shellescape(@%, 1)<CR>]],
 --   { noremap = true, buffer = true, desc = 'Run Python code in outside shell' })
 
-vim.keymap.set('n', '<leader>x', [[:bd<CR>]], { noremap = true, buffer = true, desc = 'Close current buffer' })
+vim.keymap.set('n', '<leader>bx', [[:bd<CR>]], { noremap = true, buffer = true, desc = 'Close current buffer' })
 
 -- [[ Blinker ]]
 require("blinker").setup({})
@@ -357,7 +357,7 @@ require('neogen').setup({ snippet_engine = "luasnip" })
 
 vim.keymap.set(
   "n",
-  "<Leader>cn",
+  "<Leader>ln",
   ":lua require('neogen').generate()<CR>",
   { noremap = true, silent = true, desc = "Generate annotation using Neogen" }
 )
@@ -365,7 +365,7 @@ vim.keymap.set(
 -- TODO: delete this
 -- [[ Aerial ]]
 -- require("aerial").setup()
-vim.keymap.set("n", "<leader>co", "<cmd>AerialToggle<CR>")
+vim.keymap.set("n", "<leader>lo", "<cmd>AerialToggle<CR>")
 
 -- [[ Oil ]]
 vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory with Oil" })
@@ -493,10 +493,10 @@ vim.defer_fn(function()
       swap = {
         enable = true,
         swap_next = {
-          ['<leader>a'] = '@parameter.inner',
+          ['<leader>ta'] = '@parameter.inner',
         },
         swap_previous = {
-          ['<leader>A'] = '@parameter.inner',
+          ['<leader>tA'] = '@parameter.inner',
         },
       },
     },
@@ -506,8 +506,8 @@ end, 0)
 -- Diagnostic keymaps
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic message' })
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic message' })
-vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
-vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
+vim.keymap.set('n', '<leader>le', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
+vim.keymap.set('n', '<leader>lq', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
 
 -- [[ Configure LSP ]]
 --  This function gets run when an LSP connects to a particular buffer.
@@ -526,14 +526,14 @@ local on_attach = function(_, bufnr)
     vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
   end
 
-  nmap('<leader>cr', vim.lsp.buf.rename, '[C]ode - [R]ename')
-  nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
+  nmap('<leader>lr', vim.lsp.buf.rename, '[L]SP - [R]ename')
+  nmap('<leader>la', vim.lsp.buf.code_action, '[L]SP [A]ction')
 
   nmap('gd', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition')
   nmap('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
   nmap('gI', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')
-  nmap('<leader>D', require('telescope.builtin').lsp_type_definitions, 'Type [D]efinition')
-  nmap('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
+  nmap('<leader>lD', require('telescope.builtin').lsp_type_definitions, '[L]SP - Type [D]efinition')
+  nmap('<leader>ls', require('telescope.builtin').lsp_document_symbols, '[L]SP - ocument [S]ymbols')
   nmap('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
 
   -- See `:help K` for why this keymap
@@ -556,11 +556,13 @@ end
 
 -- document existing key chains
 require('which-key').register {
-  ['<leader>c'] = { name = '[C]ode', _ = 'which_key_ignore' },
+  ['<leader>l'] = { name = '[L]SP', _ = 'which_key_ignore' },
   ['<leader>d'] = { name = '[D]ocument', _ = 'which_key_ignore' },
   ['<leader>g'] = { name = '[G]it', _ = 'which_key_ignore' },
   ['<leader>r'] = { name = '[R]ename', _ = 'which_key_ignore' },
+  ['<leader>b'] = { name = '[B]uffer', _ = 'which_key_ignore' },
   ['<leader>s'] = { name = '[S]earch', _ = 'which_key_ignore' },
+  ['<leader>t'] = { name = '[T]reesitter', _ = 'which_key_ignore' },
   ['<leader>w'] = { name = '[W]orkspace', _ = 'which_key_ignore' },
 }
 
