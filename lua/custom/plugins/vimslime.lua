@@ -1,9 +1,9 @@
 -- lua/custom/plugins/vimslime.lua
 
 return {
-	"jpalardy/vim-slime",
-	config = function()
-		vim.g.slime_target = "tmux"
-		vim.g.slime_python_ipython = 1
-	end
+  'jpalardy/vim-slime',
+  config = function()
+    vim.g.slime_target = 'kitty'
+    vim.g.slime_cell_delimiter = "# %%"
+  end,
 }
