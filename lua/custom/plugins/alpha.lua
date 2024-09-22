@@ -11,7 +11,7 @@ return {
 		}
 		dashboard.section.buttons.val = {
 			dashboard.button("e", "  New file", ":ene <BAR> startinsert <CR>"),
-			dashboard.button("SPC w o", "  Root folder"),
+			dashboard.button("SPC w O", "  Root folder"),
 			dashboard.button("SPC s f", "󰐱  Fuzzy find file"),
 			dashboard.button("SPC s z", "  Zoxide list"),
 			dashboard.button("SPC ?", "󰋚  Recently opened files"),

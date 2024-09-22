@@ -1,6 +1,10 @@
 return {
 	'stevearc/oil.nvim',
-	opts = {},
+	opts = {
+		lsp_file_methods = {
+			autosave_changes = true,
+		},
+	},
 	-- Optional dependencies
 	dependencies = { "nvim-tree/nvim-web-devicons" },
 }

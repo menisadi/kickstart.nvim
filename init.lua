@@ -346,6 +346,9 @@ vim.api.nvim_create_autocmd("FileType", {
 
 vim.keymap.set('n', '<leader>bx', [[:bd<CR>]], { noremap = true, buffer = true, desc = 'Close current buffer' })
 
+-- My little plugin
+require('random_vim_commands').setup()
+
 -- [[ Blinker ]]
 require("blinker").setup({})
 
@@ -369,7 +372,8 @@ vim.keymap.set("n", "<leader>lo", "<cmd>AerialToggle<CR>")
 
 -- [[ Oil ]]
 vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory with Oil" })
-vim.keymap.set("n", "<leader>wo", "<CMD>Oil ~<CR>", { desc = "Open root directory with Oil" })
+vim.keymap.set("n", "<leader>wO", "<CMD>Oil ~<CR>", { desc = "Open root directory with Oil" })
+vim.keymap.set("n", "<leader>wo", "<CMD>Oil .<CR>", { desc = "Open current folder with Oil" })
 
 
 -- TODO: delete this
