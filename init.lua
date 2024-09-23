@@ -347,7 +347,7 @@ vim.api.nvim_create_autocmd("FileType", {
 vim.keymap.set('n', '<leader>bx', [[:bd<CR>]], { noremap = true, buffer = true, desc = 'Close current buffer' })
 
 -- My little plugin
-require('random_vim_commands').setup()
+-- require('random_vim_commands').setup()
 
 -- [[ Blinker ]]
 require("blinker").setup({})
