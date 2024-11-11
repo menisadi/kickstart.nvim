@@ -598,7 +598,7 @@ local servers = {
   -- rust_analyzer = {},
   -- tsserver = {},
   html = { filetypes = { 'html', 'twig', 'hbs' } },
-
+  -- for lua
   lua_ls = {
     Lua = {
       workspace = {
@@ -636,6 +636,27 @@ mason_lspconfig.setup_handlers {
     }
   end,
 }
+
+-- Configure Dart/Flutter LSP
+require("lspconfig").dartls.setup({
+  cmd = { "dart", "language-server", "--protocol=lsp" },
+  filetypes = { "dart" },
+  init_options = {
+    closingLabels = true,
+    flutterOutline = true,
+    onlyAnalyzeProjectsWithOpenFiles = true,
+    outline = true,
+    suggestFromUnimportedLibraries = true,
+  },
+  -- root_dir = root_pattern("pubspec.yaml"),
+  settings = {
+    dart = {
+      completeFunctionCalls = true,
+      showTodos = true,
+    },
+  },
+  on_attach = on_attach
+})
 
 -- [[ Configure nvim-cmp ]]
 -- See `:help cmp`
