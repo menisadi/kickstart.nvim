@@ -142,21 +142,20 @@ require('lazy').setup({
         section_separators = '',
         globalstatus = true,
       },
-      inactive_winbar = {
-        lualine_z = { { "buffers", hide_filename_extension = true } }
+      tabline = {
+        lualine_a = { { "buffers", hide_filename_extension = true, } },
       },
       winbar = {
-        lualine_z = { { "buffers", hide_filename_extension = true, } },
-        lualine_c = {
+        lualine_a = {
           {
             "navic",
-            color_correction = nil,
+            highlight = true,
             navic_opts = {
-              separator = " | ",
-              depth_limit = 5,
+              separator = " > ",
+              depth_limit = 4,
             }
           }
-        }
+        },
       }
     },
   },
