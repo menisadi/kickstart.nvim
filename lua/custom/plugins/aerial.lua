@@ -6,6 +6,9 @@ return {
 			"Function",
 			"Method",
 		},
+		layout = {
+			default_direction = "prefer_left",
+		},
 	},
 	-- Optional dependencies
 	dependencies = {
