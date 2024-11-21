@@ -1,15 +1,6 @@
 return {
 	'stevearc/aerial.nvim',
-	opts = {
-		filter_kind = {
-			"Class",
-			"Function",
-			"Method",
-		},
-		layout = {
-			default_direction = "prefer_left",
-		},
-	},
+	opts = {},
 	-- Optional dependencies
 	dependencies = {
 		"nvim-treesitter/nvim-treesitter",
